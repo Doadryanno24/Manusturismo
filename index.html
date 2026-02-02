@@ -4,134 +4,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manustur - Turismo</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <style>
     :root {
-      --primary-color: #1A4F8A; 
+      --primary-color: #1A4F8A;
       --secondary-color: #FFFFFF;
       --button-radius: 22px;
       --font-family: 'Montserrat', sans-serif;
     }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: var(--font-family);
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
       padding: 20px;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Vídeo de fundo */
     #bg-video {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       z-index: -2;
     }
 
-    /* Fallback: imagem de fundo (usada se o vídeo falhar) */
-    body.no-video {
-      background: url("fundo.png") no-repeat center center/cover;
-    }
-
-    /* Overlay azul translúcido */
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       background: rgba(26, 79, 138, 0.55);
       z-index: -1;
     }
 
     .container {
-      position: relative;
       max-width: 500px;
       width: 100%;
       text-align: center;
-      padding: 60px 30px;
+      padding: 60px 30px 40px;
       border-radius: 30px;
-      background: rgba(255, 255, 255, 0.35); 
+      background: rgba(255, 255, 255, 0.35);
       box-shadow: 0 18px 45px rgba(0,0,0,0.25);
-      z-index: 1;
-      overflow: hidden;
       backdrop-filter: blur(12px) saturate(140%);
     }
 
-    /* ESTILOS DO SLIDER (LOGO) */
     .logo {
-      width: 200px; 
-      height: 200px; 
-      margin: 0 auto 25px auto;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 25px;
       border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+      overflow: hidden;
       position: relative;
-      overflow: hidden; 
-      transition: transform 0.3s;
     }
-
-    .logo:hover { transform: scale(1.05); }
 
     .slider-item {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       opacity: 0;
-      /* Transição de 1.5s para o efeito fade */
-      transition: opacity 1.5s ease-in-out; 
+      transition: opacity 1.5s ease-in-out;
     }
 
     .slider-item.active {
-      opacity: 1; 
+      opacity: 1;
     }
 
     .slider-item img {
       width: 100%;
       height: 100%;
-      /* CHAVE PARA O AJUSTE DE PROPORÇÃO: Garante que a imagem preencha o container (200x200) sem distorcer, cortando as bordas se necessário. */
-      object-fit: cover; 
-      border-radius: 15px; 
+      object-fit: cover;
     }
-    /* FIM DOS ESTILOS DO SLIDER */
 
     h1 {
       color: var(--primary-color);
       font-size: 38px;
-      font-weight: 700;
       margin-bottom: 10px;
-      opacity:0; animation: fadeInUp 1s forwards 0.3s;
+      opacity: 0;
+      animation: fadeInUp 1s forwards 0.3s;
     }
 
-    p.subtitle {
+    .subtitle {
       font-size: 18px;
       color: #333;
-      margin-bottom: 40px;
-      opacity:0; animation: fadeInUp 1s forwards 0.5s;
+      margin-bottom: 35px;
+      opacity: 0;
+      animation: fadeInUp 1s forwards 0.5s;
     }
 
     @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(20px);}
-      to {opacity:1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .link-button {
-      display:flex; align-items:center; justify-content:center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
       background: linear-gradient(135deg, #1A4F8A, #2A6FB8);
-      color: var(--secondary-color); text-decoration:none;
-      padding: 20px 25px; border-radius: var(--button-radius);
-      margin: 14px 0; font-weight:600; font-size:17px; gap:12px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.18);
-      opacity:0; transform: translateY(20px);
+      color: white;
+      text-decoration: none;
+      padding: 18px 22px;
+      border-radius: 22px;
+      margin: 14px 0;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+      opacity: 0;
+      transform: translateY(20px);
       animation: buttonFadeIn 0.6s forwards;
     }
 
@@ -142,102 +134,128 @@
     .link-button:nth-child(5){animation-delay:1.5s;}
     .link-button:nth-child(6){animation-delay:1.7s;}
 
-    @keyframes buttonFadeIn{
-      to{opacity:1; transform: translateY(0);}
+    @keyframes buttonFadeIn {
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .link-button:hover{
+    .link-button:hover {
       transform: translateY(-4px);
-      box-shadow:0 12px 28px rgba(0,0,0,0.3);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.3);
     }
 
-    .socials{
-      margin-top:30px; display:flex; justify-content:center; gap:22px;
-      opacity:0; transform:translateY(20px);
+    .socials {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      opacity: 0;
       animation: fadeInUp 1s forwards 2s;
     }
-    .socials a{
-      color: var(--primary-color); font-size:28px; transition: transform 0.3s, color 0.3s;
-    }
-    .socials a:hover{
-      transform: scale(1.3); color:#155ab6;
+
+    .socials a {
+      font-size: 26px;
+      color: var(--primary-color);
     }
 
-    .floating-whatsapp{
-      position: fixed; bottom:25px; right:25px;
-      background:#25D366; color:white;
-      padding:16px 20px; border-radius:50px; font-size:18px;
-      font-weight:600; text-decoration:none;
-      box-shadow:0 8px 20px rgba(0,0,0,0.25);
-      display:flex; align-items:center; gap:10px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      z-index:999;
-    }
-    .floating-whatsapp:hover{
-      transform:translateY(-3px);
-      box-shadow:0 12px 28px rgba(0,0,0,0.3);
+    footer {
+      margin-top: 35px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(0,0,0,0.15);
+      color: #444;
     }
 
-    .container::before{
-      content:""; position:absolute; top:0; left:0; right:0; bottom:0;
-      background-image: repeating-linear-gradient(45deg, rgba(26,79,138,0.05) 0 10px, transparent 10px 20px);
-      opacity:0.3; z-index:0;
+    footer h5 {
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    .container > *{position: relative; z-index:1;}
+    footer small {
+      font-size: 12px;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25D366;
+      color: white;
+      padding: 16px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
 
   <video autoplay muted loop playsinline id="bg-video">
     <source src="fundo.mp4" type="video/mp4">
-    Seu navegador não suporta vídeos em HTML5.
   </video>
 
   <div class="container">
-    
-    <div class="logo" id="mini-slider">
-      <div class="slider-item active">
-        <img src="logo.jpg" alt="Manustur Logo">
-      </div>
-      <div class="slider-item">
-        <img src="passeio1.jpg" alt="Passeio em São Luís ou Lençóis">
-      </div>
-      <div class="slider-item">
-        <img src="passeio2.jpg" alt="Passeio em Alcântara ou Raposa">
-      </div>
-      <div class="slider-item">
-        <img src="passeio3.jpg" alt="Lençóis Maranhenses">
-      </div>
-      <div class="slider-item">
-        <img src="passeio4.jpg" alt="Praia de Raposa">
-      </div>
-      <div class="slider-item">
-        <img src="passeio5.jpg" alt="Praia de Alcântara">
-      </div>
-      <div class="slider-item">
-        <img src="passeio6.jpg" alt="Centro Histórico São Luís">
-      </div>
-      <div class="slider-item">
-        <img src="passeio7.jpg" alt="Dunas e Lagoas">
-      </div>
+
+    <div class="logo">
+      <div class="slider-item active"><img src="logo.jpg"></div>
+      <div class="slider-item"><img src="passeio1.jpg"></div>
+      <div class="slider-item"><img src="passeio2.jpg"></div>
+      <div class="slider-item"><img src="passeio3.jpg"></div>
+      <div class="slider-item"><img src="passeio4.jpg"></div>
+      <div class="slider-item"><img src="passeio5.jpg"></div>
+      <div class="slider-item"><img src="passeio6.jpg"></div>
     </div>
+
     <h1>ManusTur</h1>
-    <p class="subtitle">Passeios turísticos em São Luís, Alcântara, Raposa, São José de Ribamar e Lençóis Maranhenses.</p>
+    <p class="subtitle">
+      Passeios turísticos em São Luís, Alcântara, Raposa, São José de Ribamar e Lençóis Maranhenses.
+    </p>
 
     <div class="links-group">
-      <a href="https://wa.me/559888065720" class="link-button"><i class="fab fa-whatsapp"></i> Atendimento WhatsApp</a>
-      <a href="mailto:gildoturismo@hotmail.com" class="link-button"><i class="fas fa-envelope"></i> E-mail</a>
-      <a href="https://manustur.netlify.app" class="link-button"><i class="fas fa-globe"></i> Site Oficial</a>
-      <a href="https://instagram.com/manusturismo" class="link-button"><i class="fab fa-instagram"></i> Instagram</a>
-      <a href="https://wa.me/559888065720" class="link-button"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://wa.me/559888065720" class="link-button">
+        <i class="fab fa-whatsapp"></i> Atendimento WhatsApp
+      </a>
+
+      <a href="mailto:gildoturismo@hotmail.com" class="link-button">
+        <i class="fas fa-envelope"></i> E-mail
+      </a>
+
+      <a href="https://manustur.netlify.app" class="link-button">
+        <i class="fas fa-globe"></i> Site Oficial
+      </a>
+
+      <a href="https://instagram.com/manusturismo" class="link-button">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+
+      <a href="portfolio.pdf" target="_blank" class="link-button">
+        <i class="fas fa-briefcase"></i> Portfólio
+      </a>
+
+      <a href="https://wa.me/559888065720" class="link-button">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
     </div>
 
     <div class="socials">
-      <a href="https://facebook.com/manustur" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://instagram.com/manusturismo" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://linkedin.com/company/manustur" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
     </div>
+
+    <footer>
+      <h5>© 2026 ManusTur • Todos os direitos reservados</h5>
+      <small>
+        Desenvolvido por 
+        <a href="https://dk7web.netlify.app" target="_blank" style="color:#c9a227; text-decoration:none; font-weight:600;">
+          DK7
+        </a>
+      </small>
+    </footer>
+
   </div>
 
   <a href="https://wa.me/559888065720" class="floating-whatsapp">
@@ -245,26 +263,15 @@
   </a>
 
   <script>
-    // Se o vídeo de fundo não carregar, aplica a imagem de fallback
-    document.getElementById('bg-video').addEventListener('error', function() {
-      document.body.classList.add('no-video');
-    });
-
-    // LÓGICA DO MINI SLIDER
-    const slider = document.getElementById('mini-slider');
-    const slides = slider.querySelectorAll('.slider-item');
+    const slides = document.querySelectorAll('.slider-item');
     let currentSlide = 0;
-    const slideInterval = 3000; // Troca a cada 3 segundos (3000ms)
 
-    function nextSlide() {
+    setInterval(() => {
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
-    }
-
-    // Inicia a troca automática dos slides
-    setInterval(nextSlide, slideInterval);
-    // FIM DA LÓGICA DO MINI SLIDER
+    }, 3000);
   </script>
+
 </body>
 </html>
